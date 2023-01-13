@@ -8,6 +8,7 @@ namespace Auto_Worker
     public partial class Form1 : Form
     {
         int rounds = 0;
+        int TgMove, MalX, MalY;
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.StdCall)]
         public static extern void mouse_event(uint dwFlags, uint dx, uint dy, uint cButtons, uint dwExtraInfo);
@@ -17,10 +18,20 @@ namespace Auto_Worker
         private const int MOUSEEVENTF_RIGHTDOWN = 0x08;
         private const int MOUSEEVENTF_RIGHTUP = 0x10;
 
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        public static extern IntPtr CreateRoundRectRgn
+        (
+            int nLeftRect,     // x-coordinate of upper-left corner
+            int nTopRect,      // y-coordinate of upper-left corner
+            int nRightRect,    // x-coordinate of lower-right corner
+            int nBottomRect,   // y-coordinate of lower-right corner
+            int nWidthEllipse, // height of ellipse
+            int nHeightEllipse // width of ellipse
+        );
         public Form1()
         {
             InitializeComponent();
-
+            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
 
         private void Feed(int burgerX,  int waterX)
@@ -100,6 +111,27 @@ namespace Auto_Worker
             timer1.Enabled = false;
             timer1.Stop();
             MessageBox.Show("You have stoped the program.");
+        }
+
+        private void panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            TgMove = 1;
+            MalX = e.X;
+            MalY = e.Y;
+        }
+
+        //Wenn man nicht auf das Panel klickt wird eine Flagge auf falsch gesetzt
+        private void panel1_MouseUp(object sender, MouseEventArgs e)
+        {
+            TgMove = 0;
+        }
+        //Form wird verschiben falls Panel angeklickt ist und verschoben wird
+        private void panel1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (TgMove == 1)
+            {
+                this.SetDesktopLocation(MousePosition.X - MalX, MousePosition.Y - MalY);
+            }
         }
     }
 }
