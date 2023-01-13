@@ -8,4 +8,4 @@
 3. Choose Food and Water Slots
 4. Set Interval in minutes
 5. Set Amount of Rounds (Amount of Food/Water)
-<br/>   6.Click on Start
+<br/>6.Click on Start
