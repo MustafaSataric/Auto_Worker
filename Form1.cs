@@ -96,7 +96,7 @@ namespace Auto_Worker
             else
             {
                 rounds++;
-                int[] indexFed = new int[] { 350, 462, 592, 612, 750, 852 };
+                int[] indexFed = new int[] { 350, 462, 592, 750, 852 };
                 try
                 {
                     Feed(indexFed[Convert.ToInt32(comboBox1.Text) - 1], indexFed[Convert.ToInt32(comboBox2.Text) - 1]);
