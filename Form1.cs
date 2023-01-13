@@ -38,19 +38,19 @@ namespace Auto_Worker
 
 
             // create X,Y point (0,0) explicitly with System.Drawing 
-            System.Drawing.Point confirm = new System.Drawing.Point(483, 614);
+            System.Drawing.Point confirm = new System.Drawing.Point(350, 725);
 
             Cursor.Position = burger;
             mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, Convert.ToUInt32(burgerX), 254, 0, 0);
             Thread.Sleep(2000);
             Cursor.Position = confirm;
-            mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 483, 614, 0, 0);
+            mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 350, 725, 0, 0);
             Thread.Sleep(2000);
             Cursor.Position = water;
             mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, Convert.ToUInt32(waterX), 254, 0, 0);
             Thread.Sleep(2000);
             Cursor.Position = confirm;
-            mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 483, 614, 0, 0);
+            mouse_event(MOUSEEVENTF_LEFTDOWN | MOUSEEVENTF_LEFTUP, 350, 725, 0, 0);
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -85,7 +85,7 @@ namespace Auto_Worker
             else
             {
                 rounds++;
-                int[] indexFed = new int[] { 350, 462, 592, 612, 719, 852 };
+                int[] indexFed = new int[] { 350, 462, 592, 612, 750, 852 };
                 try
                 {
                     Feed(indexFed[Convert.ToInt32(comboBox1.Text) - 1], indexFed[Convert.ToInt32(comboBox2.Text) - 1]);
